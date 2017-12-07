@@ -2,18 +2,11 @@
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import React from 'react';
-import Signup from './Signup';
-import OwnerContainer from '../containers/OwnerContainer';
-import RenterContainer from '../containers/RenterContainer';
-import Login from './Login';
-import CreateSpace from './CreateSpace'
-
-// ITERATION NOTES:
-
-// PSQL ACCOUNT
-// user: deluge
-// password: password
-// database name: spaceex
+import OwnerContainer from './containers/OwnerContainer';
+import RenterContainer from './containers/RenterContainer';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import CreateSpace from './components/CreateSpace';
 
 // successful signup and login generates a token that holds the _id from the sequelize database
 // the reducers have NOT been tested and need to be worked on
@@ -21,7 +14,6 @@ import CreateSpace from './CreateSpace'
 const App = () => (
   <div id="app">
     <h1>Space Ex!</h1>
-
     <Switch>
       <Route exact path="/" component={Login} />
       <Route path="/login" component={Login} />

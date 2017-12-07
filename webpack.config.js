@@ -1,5 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './client/index.js',
@@ -7,22 +6,23 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './client/index.html',
-    }),
-  ],
   resolve: {
     extensions: ['.js', '.jsx'],
   },
   module: {
-    rules: [
+    loaders: [
       {
-        test: /\.(js|jsx)$/,
+        test: /jsx?/,
         exclude: /node_modules/,
-        use: [
-          'babel-loader',
-        ],
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015', 'react', 'stage-0'],
+        },
+      },
+      {
+        test: /scss$/,
+        exclude: /node_modules/,
+        loaders: ['style', 'css', 'sass'],
       },
     ],
   },
