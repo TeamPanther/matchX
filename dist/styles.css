@@ -1,0 +1,27 @@
+* {
+  font-family: "Open Sans";
+}
+
+#app{
+  background: tomato;
+}
+div {
+  display: flex;
+  /*justify-content: center;*/
+  align-items: center;
+  flex-direction: column;
+}
+
+.owner-spaces {
+  flex-direction: row;
+}
+
+.single-space {
+  background: pink;
+  width: 280px;
+  height: 450px;
+}
+.space-img {
+  max-width: 250px;
+  max-height: 150px;
+}
