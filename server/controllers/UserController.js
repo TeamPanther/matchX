@@ -17,6 +17,14 @@ const createUser = (req, res) => {
       phone: req.body.phone,
       user: req.body.user,
       rating: req.body.rating,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      genderPreference: req.body.genderPreference,
+      question1: req.body.question1,
+      question2: req.body.question2,
+      question3: req.body.question3,
+      question4: req.body.question4,
+      question5: req.body.question5,
     },
   }).then((data) => {
     res.json(data);
@@ -56,7 +64,7 @@ const compareUser = (req, res) => {
       // sort diffs lowest to highest
       }).sort((a, b) => a.diff - b.diff);
 
-      // Include 3 best matches
+      // Include best matches
       diffs.forEach((elem) => {
         bestMatches.push(choices[elem.ind]);
       });
