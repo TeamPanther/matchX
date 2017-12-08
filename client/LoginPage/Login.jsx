@@ -41,7 +41,7 @@ class Login extends Component {
         <TextField
           hintText="Password"
           value={this.state.password}
-          onChange={e => this.handleChange('username', e)}
+          onChange={e => this.handleChange('password', e)}
         /><br />
         <FlatButton
           id="search-button"
