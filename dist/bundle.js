@@ -3594,7 +3594,7 @@ var _App = __webpack_require__(114);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _store = __webpack_require__(126);
+var _store = __webpack_require__(124);
 
 var _store2 = _interopRequireDefault(_store);
 
@@ -25651,19 +25651,19 @@ var _OwnerContainer = __webpack_require__(115);
 
 var _OwnerContainer2 = _interopRequireDefault(_OwnerContainer);
 
-var _RenterContainer = __webpack_require__(120);
+var _RenterContainer = __webpack_require__(119);
 
 var _RenterContainer2 = _interopRequireDefault(_RenterContainer);
 
-var _Signup = __webpack_require__(122);
+var _Signup = __webpack_require__(120);
 
 var _Signup2 = _interopRequireDefault(_Signup);
 
-var _Login = __webpack_require__(123);
+var _Login = __webpack_require__(121);
 
 var _Login2 = _interopRequireDefault(_Login);
 
-var _CreateSpace = __webpack_require__(125);
+var _CreateSpace = __webpack_require__(123);
 
 var _CreateSpace2 = _interopRequireDefault(_CreateSpace);
 
@@ -25715,15 +25715,11 @@ var _reactRedux = __webpack_require__(6);
 
 var _reactRouterDom = __webpack_require__(7);
 
-var _OwnerRes = __webpack_require__(116);
-
-var _OwnerRes2 = _interopRequireDefault(_OwnerRes);
-
-var _OwnerSpaces = __webpack_require__(117);
+var _OwnerSpaces = __webpack_require__(116);
 
 var _OwnerSpaces2 = _interopRequireDefault(_OwnerSpaces);
 
-var _Logout = __webpack_require__(119);
+var _Logout = __webpack_require__(118);
 
 var _Logout2 = _interopRequireDefault(_Logout);
 
@@ -25777,14 +25773,6 @@ var OwnerContainer = function OwnerContainer(props) {
     { className: 'owner-container' },
     props.username,
     ' Container',
-    _react2.default.createElement(_OwnerRes2.default, {
-      reservationList: props.reservationList,
-      pending: props.pending
-    }),
-    _react2.default.createElement(_OwnerSpaces2.default, {
-      spaces: props.spaces,
-      deleteSpace: props.deleteSpace
-    }),
     _react2.default.createElement(
       _reactRouterDom.Link,
       { to: { pathname: '/createspace', state: { id: props._id } } },
@@ -25813,36 +25801,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var OwnerRes = function OwnerRes(props) {
-  // console.log('INSIDE OWNER RES')
-  // console.log(props)
-  return _react2.default.createElement(
-    'div',
-    null,
-    'this be ownerres'
-  );
-};
-
-exports.default = OwnerRes;
-
-/***/ }),
-/* 117 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _SingleSpace = __webpack_require__(118);
+var _SingleSpace = __webpack_require__(117);
 
 var _SingleSpace2 = _interopRequireDefault(_SingleSpace);
 
@@ -25859,7 +25818,6 @@ var OwnerSpaces = function OwnerSpaces(props) {
   // picture: "https://memegenerator.net/img/instances/500x/62087528/pls-hurry.jpg"
   // rating: "42"
   // tags: {wifi: true, noiseTolerance: "high"}
-
 
   return _react2.default.createElement(
     'div',
@@ -25882,7 +25840,7 @@ var OwnerSpaces = function OwnerSpaces(props) {
 exports.default = OwnerSpaces;
 
 /***/ }),
-/* 118 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25962,7 +25920,7 @@ var SingleSpace = function SingleSpace(props) {
 exports.default = SingleSpace;
 
 /***/ }),
-/* 119 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26017,7 +25975,7 @@ var Logout = function Logout(props) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Logout);
 
 /***/ }),
-/* 120 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26032,10 +25990,6 @@ var _react = __webpack_require__(0);
 var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(6);
-
-var _RenterRes = __webpack_require__(121);
-
-var _RenterRes2 = _interopRequireDefault(_RenterRes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26061,7 +26015,7 @@ var RenterContainer = function RenterContainer(props) {
       props.username,
       ' !!!'
     ),
-    _react2.default.createElement(_RenterRes2.default
+    _react2.default.createElement(RenterRes
     // put in props here
     , null)
   );
@@ -26070,38 +26024,7 @@ var RenterContainer = function RenterContainer(props) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(RenterContainer);
 
 /***/ }),
-/* 121 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var RenterRes = function RenterRes(props) {
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      'h2',
-      null,
-      'This is RenterRes !!!'
-    )
-  );
-};
-
-exports.default = RenterRes;
-
-/***/ }),
-/* 122 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26292,7 +26215,7 @@ var Signup = function (_React$Component) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Signup);
 
 /***/ }),
-/* 123 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26314,7 +26237,7 @@ var _reactRedux = __webpack_require__(6);
 
 var _actions = __webpack_require__(8);
 
-var _auth = __webpack_require__(124);
+var _auth = __webpack_require__(122);
 
 var _auth2 = _interopRequireDefault(_auth);
 
@@ -26352,7 +26275,6 @@ var Login = function (_Component) {
       username: '',
       password: ''
     }, _this.handleChange = function (name, event) {
-      console.log('event.target.value is: ', event.target.value);
       _this.setState(_defineProperty({}, name, event.target.value));
     }, _this.handleSubmit = function (event) {
       event.preventDefault();
@@ -26429,7 +26351,7 @@ var Login = function (_Component) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(Login);
 
 /***/ }),
-/* 124 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26470,7 +26392,7 @@ var loginUser = function loginUser(creds) {
 exports.default = loginUser;
 
 /***/ }),
-/* 125 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26656,7 +26578,7 @@ var CreateSpace = function (_React$Component) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CreateSpace);
 
 /***/ }),
-/* 126 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26668,13 +26590,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(17);
 
-var _reduxDevtoolsExtension = __webpack_require__(127);
+var _reduxDevtoolsExtension = __webpack_require__(125);
 
-var _index = __webpack_require__(128);
+var _index = __webpack_require__(126);
 
 var _index2 = _interopRequireDefault(_index);
 
-var _reduxThunk = __webpack_require__(133);
+var _reduxThunk = __webpack_require__(131);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -26685,7 +26607,7 @@ var store = (0, _redux.createStore)(_index2.default, (0, _reduxDevtoolsExtension
 exports.default = store;
 
 /***/ }),
-/* 127 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26712,7 +26634,7 @@ exports.devToolsEnhancer = (
 
 
 /***/ }),
-/* 128 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26728,19 +26650,19 @@ var _actionTypes = __webpack_require__(9);
 
 var types = _interopRequireWildcard(_actionTypes);
 
-var _spaceReducer = __webpack_require__(129);
+var _spaceReducer = __webpack_require__(127);
 
 var _spaceReducer2 = _interopRequireDefault(_spaceReducer);
 
-var _userReducer = __webpack_require__(130);
+var _userReducer = __webpack_require__(128);
 
 var _userReducer2 = _interopRequireDefault(_userReducer);
 
-var _eventReducer = __webpack_require__(131);
+var _eventReducer = __webpack_require__(129);
 
 var _eventReducer2 = _interopRequireDefault(_eventReducer);
 
-var _authReducer = __webpack_require__(132);
+var _authReducer = __webpack_require__(130);
 
 var _authReducer2 = _interopRequireDefault(_authReducer);
 
@@ -26764,7 +26686,7 @@ var reducers = (0, _redux.combineReducers)({
 exports.default = reducers;
 
 /***/ }),
-/* 129 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26832,7 +26754,7 @@ var spaceReducer = function spaceReducer() {
 exports.default = spaceReducer;
 
 /***/ }),
-/* 130 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26870,7 +26792,7 @@ function signupReducer() {
 exports.default = signupReducer;
 
 /***/ }),
-/* 131 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27019,7 +26941,7 @@ var eventReducer = function eventReducer() {
 exports.default = eventReducer;
 
 /***/ }),
-/* 132 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27076,7 +26998,7 @@ var authReducer = function authReducer() {
 exports.default = authReducer;
 
 /***/ }),
-/* 133 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
