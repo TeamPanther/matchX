@@ -51,13 +51,15 @@ class Login extends Component {
         /><br />
 
         Not a user?
-        <Link to='/signup'>
+        {/* <Link to='/signup'>
           <FlatButton
             id="search-button"
             onClick={this.handleSubmit}
             label="Sign Up"
             secondary={true} />
-        </Link>
+        </Link> */}
+        {/* refactor to incorporate materialui */}
+        <Link to='/signup'>Signup</Link>
           {this.props.auth.isAuthenticated === true && <Redirect to="/owner" />}
       </div>
     )
