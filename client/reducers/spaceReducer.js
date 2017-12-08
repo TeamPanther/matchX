@@ -1,6 +1,10 @@
 import * as types from '../constants/actionTypes';
 
-const spaceReducer = (state = { spaces: [] }, action) => {
+const initialState = {
+  spaces: []
+}
+
+const spaceReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.GET_SPACES:
       fetch('/getSpaces', {

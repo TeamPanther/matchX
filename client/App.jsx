@@ -5,7 +5,7 @@ import React from 'react';
 import OwnerContainer from './containers/OwnerContainer';
 import RenterContainer from './containers/RenterContainer';
 import Signup from './components/Signup';
-import Login from './components/Login';
+import Login from './LoginPage/Login';
 import CreateSpace from './components/CreateSpace';
 
 // successful signup and login generates a token that holds the _id from the sequelize database
