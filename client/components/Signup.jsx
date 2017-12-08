@@ -17,78 +17,121 @@ class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userData: [],
-      userID: 0,
-      submitted: false,
       username: '',
       password: '',
       dateJoined: '',
       email: '',
-      phone: '',
       name: '',
       age: 0,
       gender: '',
       genderPreference: '',
-      userType: 'Owner',
-      tacosPreference: 0,
-      magicPreference: 0,
-      quesadillaPreference: 0,
-      guitarPreference: 0,
-      enchiladasPreference: 0,
+      question1: 0,
+      question2: 0,
+      question3: 0,
+      question4: 0,
+      question5: 0,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(name, event) {
+    console.log("state: ", this.state);
     this.setState({ [name]: event.target.value });
   }
 
-  handleSubmit(e){
-    e.preventDefault();
-    //set user ID and user data
-    let userIDIncrement = this.state.userID +1
-    const tempUserData = {
-      tacosPreference: this.state.tacos.Preference,
-      magicPreference: this.state.magicPreference,
-      quesadillaPreference: this.state.quesadillaPreference,
-      guitarPreference: this.state.guitarPreference,
-      enchiladasPreference: this.state.enchiladasPreference
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { 
+      username, 
+      password,
+      dateJoined, 
+      email,
+      name,
+      age,
+      gender,
+      genderPreference,
+      question1,
+      question2,
+      question3,
+      question4,
+      question5 
+    } = this.state;
+    const { dispatch } = this.props;
+    if (username && password) {
+      dispatch(loginUser({ 
+        username: username, 
+        password: password,
+        dateJoined: dateJoined,
+        email: email,
+        name: name,
+        age: age,
+        gender: gender,
+        genderPreference: genderPreference,
+        question1: question1,
+        question2: question2,
+        question3: question3,
+        question4: question4,
+        question5: question5 
+      }))
+    } else {
+      alert("you must fill out all fields!");
     }
-    
-    this.state.userData.push(tempUserData);
-  
-    //POST user data (state @ index of userID) to the database using fetch
-    //put this in the 
-    fetch('', {
-      method: 'POST',
-      headers: {
-        'Content-Type: ''
-      },
-      body: JSON.stringify(this.state.userData[userID])
-    }).then((res)=>{
-      console.log(res);
-    }).catch((err)=>{
-      console.log(err)
-    })
-    
-    //update the state
-    this.setState({
-      userData: this.state.userData,
-      submitted: true,
-      userID: userIDIncrement,
-    })
   }
+
+  // handleSubmit(e){
+  //   e.preventDefault();
+  //   //set user ID and user data
+  //   let userIDIncrement = this.state.userID +1
+  //   const tempUserData = {
+  //     question1 this.state.tacos.Preference,
+  //     question2: this.state.question2,
+  //     question3: this.state.question3,
+  //     question4: this.state.question4,
+  //     question5: this.state.question5
+  //   }
+    
+  //   this.state.userData.push(tempUserData);
+  
+  //POST user data (state @ index of userID) to the database using fetch 
+  //   fetch('', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type: ''
+  //     },
+  //     body: JSON.stringify(this.state.userData[userID])
+  //   }).then((res)=>{
+  //     console.log(res);
+  //   }).catch((err)=>{
+  //     console.log(err)
+  //   })
+    
+  //   //update the state
+  //   this.setState({
+  //     userData: this.state.userData,
+  //     submitted: true,
+  //     userID: userIDIncrement,
+  //   })
+  // }
 
   render() {
     const config = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        userName: this.state.username,
+        username: this.state.username,
         password: this.state.password,
         email: this.state.email,
-        phone: this.state.phone,
-        user: this.state.userType,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        age: this.state.age,
+        gender: this.state.gender,
+        genderPreference: this.state.genderPreference,
+        question1: this.state.question1,
+        question2: this.state.question2,
+        question3: this.state.question3,
+        question4: this.state.question4,
+        question5: this.state.question5,
       }),
     };
 
@@ -112,9 +155,20 @@ class Signup extends React.Component {
           />
         </h4>
         <h4>
-          Name:
-          <input/>
-            
+          First Name:
+          <input
+            type="text"
+            value={this.state.firstName}
+            onChange={e => this.handleChange('firstName', e)}
+          />
+        </h4>
+        <h4>
+          Last Name:
+          <input
+            type="text"
+            value={this.state.lastName}
+            onChange={e => this.handleChange('lastName', e)}
+          />
         </h4>
         <h4>
           Email:
@@ -128,22 +182,24 @@ class Signup extends React.Component {
           Age:
           <input
             type="text"
-            value={this.state.phone}
-            onChange={e => this.handleChange('phone', e)}
+            value={this.state.age}
+            onChange={e => this.handleChange('age', e)}
           />
         </h4>
         <h4>
           Gender:
-          <select value={this.state.userType} onChange={e => this.handleChange('userType', e)}>
-            <option value="Owner">Owner</option>
-            <option value="Renter">Renter</option>
+          <select value={this.state.gender} onChange={e => this.handleChange('gender', e)}>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
           </select>
         </h4>
         <h4>
           Gender Preference:
-          <select value={this.state.userType} onChange={e => this.handleChange('userType', e)}>
-            <option value="Owner">Owner</option>
-            <option value="Renter">Renter</option>
+          <select value={this.state.genderPreference} onChange={e => this.handleChange('genderPreference', e)}>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
           </select>
         </h4>
 
@@ -151,60 +207,54 @@ class Signup extends React.Component {
           <p>Rate your preference on a scale from 1-5</p>
           <p>Completely interested (1) - Love it (5)</p>
 
-          <form onSubmit={this.props.handleSubmit}>
-            <p>How much do you like tacos?</p>
-            <select id="dropdown1" onChange={this.props.handleWordSelect} value={this.props.monthWord}>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+          <p>How much do you like tacos?</p>
+            <select id="dropdown1" value={this.state.question1} onChange={e => this.handleChange('question1', e)}>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
             </select>
 
             <p>How much do you enjoy magic tricks?</p>
-            <select id="dropdown1" onChange={this.props.handleWordSelect} value={this.props.monthWord}>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+            <select id="dropdown2" value={this.state.question2} onChange={e => this.handleChange('question2', e)}>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
             </select>
 
             <p>How much do you like Quesadillas?</p>
-            <select id="dropdown1" onChange={this.props.handleWordSelect} value={this.props.monthWord}>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+            <select id="dropdown3" value={this.state.question3} onChange={e => this.handleChange('question3', e)}>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
             </select>
 
             <p>How much do you enjoy air guitar?</p>
-            <select id="dropdown1" onChange={this.props.handleWordSelect} value={this.props.monthWord}>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option> 
+            <select id="dropdown4" value={this.state.question4} onChange={e => this.handleChange('question4', e)}>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
             </select>
 
             <p>How much do you like enchiladas?</p>
-            <select id="dropdown1" onChange={this.props.handleWordSelect} value={this.props.monthWord}>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+            <select id="dropdown5" value={this.state.question5} onChange={e => this.handleChange('question5', e)}>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
             </select>
-          </form>
-          <input id="submit" type="submit" value="Submit" />
         </div>
-
-
 
         <h4>
           <br />
-
           {/* post request (reducers) to signup goes in this button */}
           <button onClick={() => this.props.signup(config)}>
             Signup

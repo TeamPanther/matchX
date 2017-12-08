@@ -27,6 +27,7 @@ const User = sequelize.define('user', {
   user: {
     type: Sequelize.STRING,
     allowNull: false,
+    defaultValue: [],
   },
   rating: {
     // type: Sequelize.DECIMAL(2, 1),
