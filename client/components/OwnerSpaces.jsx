@@ -13,8 +13,6 @@ const OwnerSpaces = (props) => {
   // rating: "42"
   // tags: {wifi: true, noiseTolerance: "high"}
 
-
-
   return (
     <div className='owner-spaces'>
         {props.spaces.map((obj, i) => {
