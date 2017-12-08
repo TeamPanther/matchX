@@ -7,12 +7,12 @@ const User = sequelize.define('user', {
     primaryKey: true,
     autoIncrement: true,
   },
-  userName: {
+  username: {
     type: Sequelize.STRING,
     allowNull: false,
     unique: true,
   },
-  password: {
+  password: { 
     type: Sequelize.STRING,
     allowNull: false,
   },
@@ -29,8 +29,49 @@ const User = sequelize.define('user', {
     allowNull: false,
   },
   rating: {
-    type: Sequelize.DECIMAL(2, 1),
+    // type: Sequelize.DECIMAL(2, 1),
+    type: Sequelize.ARRAY(Sequelize.TEXT),
+    defaultValue: null,
+  },
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  age: {
+    type: Sequelize.INTEGER,
+    allowNullL: false,
+  },
+  gender: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  genderPreference: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  question1: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+  question2: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+  question3: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+  question4: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+  question5: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
   },
 });
-
 module.exports = User;
