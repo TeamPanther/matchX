@@ -12,7 +12,7 @@ import authReducer from './authReducer';
 // reducers then have a switch statement with cases for each action type (from actionTypes.js).
 
 const reducers = combineReducers({
-  auth: authReducer,
+  auth: authReducer, //refactor later for consistency
   spaceReducer,
   signupReducer,
   eventReducer,

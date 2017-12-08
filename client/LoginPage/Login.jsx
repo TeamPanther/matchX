@@ -5,12 +5,6 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../actions/actions';
 import loginUser from '../actions/auth';
 
-const mapDispatchToProps = dispatch => ({
-  loginUser(userInfo) {
-    dispatch(loginUser(userInfo));
-  },
-});
-
 const mapStateToProps = state => ({
   auth: state.auth
 });
@@ -21,9 +15,18 @@ class Login extends Component {
       password: ''
     }
 
-
   handleChange = (name, event) => {
+    console.log('event.target.value is: ', event.target.value)
     this.setState({ [name]: event.target.value });
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { username, password } = this.state;
+    const { dispatch } = this.props;
+    if (username && password) {
+      dispatch(loginUser({ username: username, password: password }))
+    }
   }
 
   render() {
@@ -49,7 +52,7 @@ class Login extends Component {
           <br/>
 
           {/* login post request reducer to database goes here */}
-          <button onClick={() => this.props.loginUser({ username: this.state.username, password: this.state.password })}>
+          <button onClick={this.handleSubmit}>
             Login
           </button>
           Not a user?
@@ -62,4 +65,4 @@ class Login extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps)(Login);

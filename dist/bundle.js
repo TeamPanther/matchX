@@ -26328,14 +26328,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    loginUser: function loginUser(userInfo) {
-      dispatch((0, _auth2.default)(userInfo));
-    }
-  };
-};
-
 var mapStateToProps = function mapStateToProps(state) {
   return {
     auth: state.auth
@@ -26360,7 +26352,18 @@ var Login = function (_Component) {
       username: '',
       password: ''
     }, _this.handleChange = function (name, event) {
+      console.log('event.target.value is: ', event.target.value);
       _this.setState(_defineProperty({}, name, event.target.value));
+    }, _this.handleSubmit = function (event) {
+      event.preventDefault();
+      var _this$state = _this.state,
+          username = _this$state.username,
+          password = _this$state.password;
+      var dispatch = _this.props.dispatch;
+
+      if (username && password) {
+        dispatch((0, _auth2.default)({ username: username, password: password }));
+      }
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -26404,9 +26407,7 @@ var Login = function (_Component) {
           _react2.default.createElement('br', null),
           _react2.default.createElement(
             'button',
-            { onClick: function onClick() {
-                return _this2.props.loginUser({ username: _this2.state.username, password: _this2.state.password });
-              } },
+            { onClick: this.handleSubmit },
             'Login'
           ),
           'Not a user?',
@@ -26425,7 +26426,7 @@ var Login = function (_Component) {
   return Login;
 }(_react.Component);
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Login);
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(Login);
 
 /***/ }),
 /* 124 */
@@ -26754,7 +26755,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 // import all reducer js files
 var reducers = (0, _redux.combineReducers)({
-  auth: _authReducer2.default,
+  auth: _authReducer2.default, //refactor later for consistency
   spaceReducer: _spaceReducer2.default,
   signupReducer: _userReducer2.default,
   eventReducer: _eventReducer2.default
