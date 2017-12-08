@@ -26155,11 +26155,24 @@ var Signup = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Signup.__proto__ || Object.getPrototypeOf(Signup)).call(this, props));
 
     _this.state = {
+      userData: [],
+      userID: 0,
+      submitted: false,
       username: '',
       password: '',
+      dateJoined: '',
       email: '',
       phone: '',
-      userType: 'Owner'
+      name: '',
+      age: 0,
+      gender: '',
+      genderPreference: '',
+      userType: 'Owner',
+      tacosPreference: 0,
+      magicPreference: 0,
+      quesadillaPreference: 0,
+      guitarPreference: 0,
+      enchiladasPreference: 0
     };
     _this.handleChange = _this.handleChange.bind(_this);
     return _this;
@@ -26169,6 +26182,36 @@ var Signup = function (_React$Component) {
     key: 'handleChange',
     value: function handleChange(name, event) {
       this.setState(_defineProperty({}, name, event.target.value));
+    }
+  }, {
+    key: 'handleSubmit',
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var userIDIncrement = this.state.userID + 1;
+      var tempUserData = {
+        tacosPreference: this.state.tacos.Preference,
+        magicPreference: this.state.magicPreference,
+        quesadillaPreference: this.state.quesadillaPreference,
+        guitarPreference: this.state.guitarPreference,
+        enchiladasPreference: this.state.enchiladasPreference
+      };
+
+      this.state.userData.push(tempUserData);
+
+      //POST to the database using fetch
+      // fetch('', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type: ''
+      //   },
+      //   body: JSON.stringify(this.state.userData[userID])
+      // }).then
+
+      this.setState({
+        userData: this.state.userData,
+        submitted: true,
+        userID: userIDIncrement
+      });
     }
   }, {
     key: 'render',
@@ -26222,6 +26265,12 @@ var Signup = function (_React$Component) {
         _react2.default.createElement(
           'h4',
           null,
+          'Name:',
+          _react2.default.createElement('input', null)
+        ),
+        _react2.default.createElement(
+          'h4',
+          null,
           'Email:',
           _react2.default.createElement('input', {
             type: 'text',
@@ -26234,7 +26283,7 @@ var Signup = function (_React$Component) {
         _react2.default.createElement(
           'h4',
           null,
-          'Phone:',
+          'Age:',
           _react2.default.createElement('input', {
             type: 'text',
             value: this.state.phone,
@@ -26246,7 +26295,7 @@ var Signup = function (_React$Component) {
         _react2.default.createElement(
           'h4',
           null,
-          'User Type:',
+          'Gender:',
           _react2.default.createElement(
             'select',
             { value: this.state.userType, onChange: function onChange(e) {
@@ -26263,6 +26312,232 @@ var Signup = function (_React$Component) {
               'Renter'
             )
           )
+        ),
+        _react2.default.createElement(
+          'h4',
+          null,
+          'Gender Preference:',
+          _react2.default.createElement(
+            'select',
+            { value: this.state.userType, onChange: function onChange(e) {
+                return _this2.handleChange('userType', e);
+              } },
+            _react2.default.createElement(
+              'option',
+              { value: 'Owner' },
+              'Owner'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'Renter' },
+              'Renter'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'p',
+            null,
+            'Rate your preference on a scale from 1-5'
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            'Completely interested (1) - Love it (5)'
+          ),
+          _react2.default.createElement(
+            'form',
+            { onSubmit: this.props.handleConfirmDropdownWords },
+            _react2.default.createElement(
+              'p',
+              null,
+              'How much do you like tacos?'
+            ),
+            _react2.default.createElement(
+              'select',
+              { id: 'dropdown1', onChange: this.props.handleWordSelect, value: this.props.monthWord },
+              _react2.default.createElement(
+                'option',
+                null,
+                '1'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '2'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '3'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '4'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '5'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'form',
+            { onSubmit: this.props.handleConfirmDropdownWords },
+            _react2.default.createElement(
+              'p',
+              null,
+              'How much do you enjoy magic tricks?'
+            ),
+            _react2.default.createElement(
+              'select',
+              { id: 'dropdown1', onChange: this.props.handleWordSelect, value: this.props.monthWord },
+              _react2.default.createElement(
+                'option',
+                null,
+                '1'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '2'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '3'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '4'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '5'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'form',
+            { onSubmit: this.props.handleConfirmDropdownWords },
+            _react2.default.createElement(
+              'p',
+              null,
+              'How much do you like Quesadillas?'
+            ),
+            _react2.default.createElement(
+              'select',
+              { id: 'dropdown1', onChange: this.props.handleWordSelect, value: this.props.monthWord },
+              _react2.default.createElement(
+                'option',
+                null,
+                '1'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '2'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '3'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '4'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '5'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'form',
+            { onSubmit: this.props.handleConfirmDropdownWords },
+            _react2.default.createElement(
+              'p',
+              null,
+              'How much do you enjoy air guitar?'
+            ),
+            _react2.default.createElement(
+              'select',
+              { id: 'dropdown1', onChange: this.props.handleWordSelect, value: this.props.monthWord },
+              _react2.default.createElement(
+                'option',
+                null,
+                '1'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '2'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '3'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '4'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '5'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'form',
+            { onSubmit: this.props.handleConfirmDropdownWords },
+            _react2.default.createElement(
+              'p',
+              null,
+              'How much do you like enchiladas?'
+            ),
+            _react2.default.createElement(
+              'select',
+              { id: 'dropdown1', onChange: this.props.handleWordSelect, value: this.props.monthWord },
+              _react2.default.createElement(
+                'option',
+                null,
+                '1'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '2'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '3'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '4'
+              ),
+              _react2.default.createElement(
+                'option',
+                null,
+                '5'
+              )
+            )
+          ),
+          _react2.default.createElement('input', { id: 'submit', type: 'submit', value: 'Rate' })
         ),
         _react2.default.createElement(
           'h4',
