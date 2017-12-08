@@ -43,7 +43,7 @@ const User = sequelize.define('user', {
   },
   age: {
     type: Sequelize.INTEGER,
-    allowNullL: false,
+    allowNull: false,
   },
   gender: {
     type: Sequelize.STRING,
