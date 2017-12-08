@@ -1,9 +1,11 @@
 import * as types from '../constants/actionTypes';
 
-const eventReducer = (state = {
+const initialState = {
   confirmedEvents: [],
   pendingEvents: [],
-}, action) => {
+}
+
+const eventReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case types.GET_CONFIRMED_EVENTS:
