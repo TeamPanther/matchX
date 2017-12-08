@@ -16,17 +16,66 @@ class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      userData: [],
+      userID: 0,
+      submitted: false,
       username: '',
       password: '',
+      dateJoined: '',
       email: '',
       phone: '',
+      name: '',
+      age: 0,
+      gender: '',
+      genderPreference: '',
       userType: 'Owner',
+      tacosPreference: 0,
+      magicPreference: 0,
+      quesadillaPreference: 0,
+      guitarPreference: 0,
+      enchiladasPreference: 0,
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(name, event) {
     this.setState({ [name]: event.target.value });
+  }
+
+  handleSubmit(e){
+    e.preventDefault();
+    //set user ID and user data
+    let userIDIncrement = this.state.userID +1
+    const tempUserData = {
+      tacosPreference: this.state.tacos.Preference,
+      magicPreference: this.state.magicPreference,
+      quesadillaPreference: this.state.quesadillaPreference,
+      guitarPreference: this.state.guitarPreference,
+      enchiladasPreference: this.state.enchiladasPreference
+    }
+    
+    this.state.userData.push(tempUserData);
+  
+    //POST user data (state @ index of userID) to the database using fetch
+    //put this in the 
+    fetch('', {
+      method: 'POST',
+      headers: {
+        'Content-Type: ''
+      },
+      body: JSON.stringify(this.state.userData[userID])
+    }).then((res)=>{
+      console.log(res);
+    }).catch((err)=>{
+      console.log(err)
+    })
+    
+    //update the state
+    this.setState({
+      userData: this.state.userData,
+      submitted: true,
+      userID: userIDIncrement,
+    })
   }
 
   render() {
@@ -62,6 +111,11 @@ class Signup extends React.Component {
           />
         </h4>
         <h4>
+          Name:
+          <input/>
+            
+        </h4>
+        <h4>
           Email:
           <input
             type="text"
@@ -70,7 +124,7 @@ class Signup extends React.Component {
           />
         </h4>
         <h4>
-          Phone:
+          Age:
           <input
             type="text"
             value={this.state.phone}
@@ -78,12 +132,75 @@ class Signup extends React.Component {
           />
         </h4>
         <h4>
-          User Type:
+          Gender:
           <select value={this.state.userType} onChange={e => this.handleChange('userType', e)}>
             <option value="Owner">Owner</option>
             <option value="Renter">Renter</option>
           </select>
         </h4>
+        <h4>
+          Gender Preference:
+          <select value={this.state.userType} onChange={e => this.handleChange('userType', e)}>
+            <option value="Owner">Owner</option>
+            <option value="Renter">Renter</option>
+          </select>
+        </h4>
+
+        <div>
+          <p>Rate your preference on a scale from 1-5</p>
+          <p>Completely interested (1) - Love it (5)</p>
+
+          <form onSubmit={this.props.handleSubmit}>
+            <p>How much do you like tacos?</p>
+            <select id="dropdown1" onChange={this.props.handleWordSelect} value={this.props.monthWord}>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+
+            <p>How much do you enjoy magic tricks?</p>
+            <select id="dropdown1" onChange={this.props.handleWordSelect} value={this.props.monthWord}>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+
+            <p>How much do you like Quesadillas?</p>
+            <select id="dropdown1" onChange={this.props.handleWordSelect} value={this.props.monthWord}>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+
+            <p>How much do you enjoy air guitar?</p>
+            <select id="dropdown1" onChange={this.props.handleWordSelect} value={this.props.monthWord}>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option> 
+            </select>
+
+            <p>How much do you like enchiladas?</p>
+            <select id="dropdown1" onChange={this.props.handleWordSelect} value={this.props.monthWord}>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </form>
+          <input id="submit" type="submit" value="Submit" />
+        </div>
+
+
+
         <h4>
           <br />
 
