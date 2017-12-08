@@ -4,19 +4,27 @@ const User = require('../models/User');
 // the user and a boolean, which will be true if the user was created and false if the user
 // already exists.
 
-
+// Returns array of User object found or created with a boolean whether new object was created
 const createUser = (req, res) => {
   User.findOrCreate({
     where: {
-      userName: req.body.userName,
+      username: req.body.username,
     },
     defaults: {
-      userName: req.body.userName,
+      username: req.body.username,
       password: req.body.password,
       email: req.body.email,
       phone: req.body.phone,
       user: req.body.user,
       rating: req.body.rating,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      genderPreference: req.body.genderPreference,
+      question1: req.body.question1,
+      question2: req.body.question2,
+      question3: req.body.question3,
+      question4: req.body.question4,
+      question5: req.body.question5,
     },
   }).then((data) => {
     res.json(data);
@@ -27,7 +35,7 @@ const createUser = (req, res) => {
 const findUser = (req, res) => {
   User.findOne({
     where: {
-      userName: req.body.username,
+      username: req.body.username,
       password: req.body.password,
     },
   }).then((data) => {
@@ -37,5 +45,33 @@ const findUser = (req, res) => {
   });
 };
 
-module.exports = { createUser, findUser };
+const compareUser = (req, res) => {
+  User.findOne({
+    where: { username: req.body.username },
+  }).then((oneData) => {
+    User.find({}).then((data) => {
+      const bestMatches = [];
+      const choices = data.filter(user => user.username !== req.body.username);
+      const diffs = choices.map((user, ind) => {
+        return {
+          diff: Math.abs(oneData.question1 - user.question1) +
+                Math.abs(oneData.question2 - user.question2) +
+                Math.abs(oneData.question3 - user.question3) +
+                Math.abs(oneData.question4 - user.question4) +
+                Math.abs(oneData.question5 - user.question5),
+          index: ind,
+        };
+      // sort diffs lowest to highest
+      }).sort((a, b) => a.diff - b.diff);
+
+      // Include best matches
+      diffs.forEach((elem) => {
+        bestMatches.push(choices[elem.ind]);
+      });
+      res.send(bestMatches);
+    });
+  });
+};
+
+module.exports = { createUser, findUser, compareUser };
 
