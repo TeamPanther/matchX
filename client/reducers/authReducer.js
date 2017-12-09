@@ -3,6 +3,7 @@ import * as types from '../constants/actionTypes';
 const initialState = {
   isFetching: false,
   isAuthenticated: localStorage.getItem('id_token'),
+  user: {}
 }
 
 const authReducer = (state = initialState, action) => {
@@ -18,6 +19,7 @@ const authReducer = (state = initialState, action) => {
         isFetching: false,
         isAuthenticated: true,
         errorMessage: '',
+        user: action.user, //maybe put in another reducer --jim                                        andrew
       });
     case types.LOGIN_FAILURE:
       return Object.assign({}, state, {

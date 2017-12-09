@@ -17,7 +17,6 @@ const loginUser = (creds) => {
             dispatch(loginError('Error'));
             return Promise.reject(user);
           }
-
           localStorage.setItem('id_token', user.id_token);
           dispatch(receiveLogin(user));
         }).catch(err => console.log(err));

@@ -21,6 +21,7 @@ export const receiveLogin = user => ({
   isFetching: false,
   isAuthenticated: true,
   payload: user.id_token,
+  user: user,
 });
 
 export const loginError = message => ({
@@ -47,39 +48,6 @@ export const logoutUser = () => (dispatch) => {
   localStorage.removeItem('id_token');
   dispatch(receiveLogout());
 };
-
-export const getSpaces = user_id => ({
-  type: types.GET_SPACES,
-  payload: { user_id },
-});
-
-export const deleteSpace = (space_id, user_id) => ({
-  type: types.DELETE_SPACE,
-  payload: { space_id, user_id },
-});
-
-export const addSpace = (name, location, description, rating, picture, tags, user_id) => ({
-  type: types.ADD_SPACE,
-  payload: {
-    name,
-    location,
-    description,
-    rating,
-    picture,
-    tags,
-    user_id,
-  },
-});
-
-export const getConfirmedEvents = (user_id, userType) => ({
-  type: types.GET_CONFIRMED_EVENTS,
-  payload: { user_id, userType },
-});
-
-export const getPendingEvents = (user_id, userType) => ({
-  type: types.GET_PENDING_EVENTS,
-  payload: { user_id, userType },
-});
 
 export const addEvent = (title, owner_user_id, renter_user_id, space_id, start, end) => ({
   type: types.ADD_EVENT,
