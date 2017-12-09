@@ -2,27 +2,21 @@
   font-family: "Open Sans";
 }
 
-#app{
-  /*background: tomato;*/
-}
+/*#app{
+  text-align:center;
+}*/
 
 div {
   display: flex;
   /*justify-content: center;*/
-  align-items: center;
   flex-direction: column;
 }
 
-.owner-spaces {
-  flex-direction: row;
+.userProfile {
+  width: 250px;
+  height: 250px;
 }
 
-.single-space {
-  background: pink;
-  width: 280px;
-  height: 450px;
-}
-.space-img {
-  max-width: 250px;
-  max-height: 150px;
+#sign-up {
+  text-align:center;
 }

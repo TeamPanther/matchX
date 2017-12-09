@@ -6,19 +6,16 @@ const UserProfile = (props) => {
   const { user } = props
   console.log(user)
   return (
-    <div className='userProfile'>
+    <div className='userProfile' style={{textAlign:'center'}}>
       <Card>
         <CardHeader
           title={user.firstName + ' ' + user.lastName}
           subtitle={user.email}
-          avatar={user.pic}
         />
-        <CardMedia
-          overlay={<CardTitle title='' subtitle='' />}
-        >
+        <CardMedia overlay={<CardTitle title='' subtitle='' />}>
           <img src={user.pic} alt='' />
         </CardMedia>
-        <CardTitle title='' subtitle='' />
+        {/* <CardTitle title='' subtitle='' /> */}
         <CardText>
           {user.username}
           {user.gender}
@@ -26,11 +23,8 @@ const UserProfile = (props) => {
           {user.age}
           {user.phone}
         </CardText>
-        <CardActions>
-          <FlatButton label="Action1" />
-          <FlatButton label="Action2" />
-        </CardActions>
       </Card>
+      <FlatButton label="Action1" />
       <br/>
     </div>
   );
