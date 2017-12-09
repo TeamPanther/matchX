@@ -1,6 +1,7 @@
 const User = require('../models/User');
-var bcrypt = require('bcryptjs');
-var salt = bcrypt.genSaltSync(10);
+const bcrypt = require('bcryptjs');
+
+const salt = bcrypt.genSaltSync(10);
 // this function connects to the signup page. It returns an array containing two indices:
 // the user and a boolean, which will be true if the user was created and false if the user
 // already exists.
@@ -40,7 +41,8 @@ const findUser = (req, res) => {
     where: { username: req.body.username },
   }).then((data) => {
     if (bcrypt.compareSync(req.body.password, data.dataValues.password)) {
-      const user = { id_token: data._id,
+      const user = { 
+        id_token: data._id,
         username: data.username,
         email: data.email,
         firstName: data.firstName,
@@ -52,19 +54,16 @@ const findUser = (req, res) => {
         gender: data.gender,
         genderPreference: data.genderPreference
       };
-      res.status(200).send(user);
+      return user;
+    } else {
+      return res.status(400).send('No user found');
     }
-    else { return res.status(400).send('No user found'); }
-  });
-};
-
-const compareUser = (req, res) => {
-  User.findOne({
-    where: { username: req.body.username },
   }).then((oneData) => {
-    User.find({}).then((data) => {
+    if (!oneData.username) return res.status(400).send('No user found');
+
+    User.find({}).then((matchData) => {
       const bestMatches = [];
-      const choices = data.filter(user => user.username !== req.body.username);
+      const choices = matchData.filter(user => user.username !== oneData.username);
       const diffs = choices.map((user, ind) => {
         return {
           diff: Math.abs(oneData.question1 - user.question1) +
@@ -81,9 +80,41 @@ const compareUser = (req, res) => {
       diffs.forEach((elem) => {
         bestMatches.push(choices[elem.ind]);
       });
-      res.send(bestMatches);
+
+      const userObj = oneData;
+      userObj.matches = bestMatches;
+      res.status(200).send(userObj);
     });
   });
 };
 
-module.exports = { createUser, findUser, compareUser };
+// Moving compareUser functionality to findUser
+// const compareUser = (req, res) => {
+//   User.findOne({
+//     where: { username: req.body.username },
+//   }).then((oneData) => {
+//     User.find({}).then((data) => {
+//       const bestMatches = [];
+//       const choices = data.filter(user => user.username !== req.body.username);
+//       const diffs = choices.map((user, ind) => {
+//         return {
+//           diff: Math.abs(oneData.question1 - user.question1) +
+//                 Math.abs(oneData.question2 - user.question2) +
+//                 Math.abs(oneData.question3 - user.question3) +
+//                 Math.abs(oneData.question4 - user.question4) +
+//                 Math.abs(oneData.question5 - user.question5),
+//           index: ind,
+//         };
+//       // sort diffs lowest to highest
+//       }).sort((a, b) => a.diff - b.diff);
+
+//       // Include best matches
+//       diffs.forEach((elem) => {
+//         bestMatches.push(choices[elem.ind]);
+//       });
+//       res.send(bestMatches);
+//     });
+//   });
+// };
+
+module.exports = { createUser, findUser };
