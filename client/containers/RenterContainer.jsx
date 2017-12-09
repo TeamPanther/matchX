@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RenterRes from '../components/RenterRes'
 // import * as actions from '../actions/actions';
 
 const mapStateToProps = store => ({
