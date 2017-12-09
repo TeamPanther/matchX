@@ -32,7 +32,7 @@ class OwnerContainer extends Component {
     return (
       <div className='ownerContainer'>
         <UserProfile user={this.props.user}/>
-        <UsersList />
+        <UsersList usersList={this.props.user.matches}/>
 
         {/* <Link to={{pathname:'/createspace', state:{id:this.props._id}}}>Create a Space!</Link> */}
         {/* {this.props.isAuthenticated === true && <Logout />} */}

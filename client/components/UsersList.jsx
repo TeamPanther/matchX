@@ -2,10 +2,13 @@ import React from 'react';
 import User from './User';
 
 const UsersList = (props) => {
+  const usersList = props.usersList.map(user => {
+    return <User user={user} />
+  })
   return (
     <div className='usersList'>
-      UsersList
-      <User />
+      GOOD MATCHES!!!
+      {usersList}
     </div>
   );
 };

@@ -24,8 +24,8 @@ class Signup extends React.Component {
       firstName: '',
       lastName: '',
       age: 0,
-      gender: '',
-      genderPreference: '',
+      gender: '-',
+      genderPreference: '-',
       question1: 0,
       question2: 0,
       question3: 0,
@@ -124,6 +124,7 @@ class Signup extends React.Component {
         <h4>
           Gender:
           <select value={this.state.gender} onChange={e => this.handleChange('gender', e)}>
+            <option value="-">-</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="Other">Other</option>
@@ -132,6 +133,7 @@ class Signup extends React.Component {
         <h4>
           Gender Preference:
           <select value={this.state.genderPreference} onChange={e => this.handleChange('genderPreference', e)}>
+            <option value="-">-</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="Other">Other</option>

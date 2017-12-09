@@ -30,10 +30,20 @@ class Login extends Component {
     }
   }
 
+  handleKeyPress = (event) => {
+    if (event.charCode == 13) {
+      console.log('enter triggered')
+      event.preventDefault();
+      // event.stopPropagation();
+      this.handleSubmit(event);
+    }
+  }
+
+
   render() {
     return (
       <div id="login" style={{textAlign: 'center'}}>
-        <h1>Space Ex!</h1>
+        <h1>Match Ex!</h1>
         <TextField
           hintText="Username"
           value={this.state.username}
@@ -43,6 +53,7 @@ class Login extends Component {
           hintText="Password"
           value={this.state.password}
           onChange={e => this.handleChange('password', e)}
+          onKeyPress={e => this.handleKeyPress(e)}
         /><br />
         <FlatButton
           id="search-button"
