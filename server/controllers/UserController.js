@@ -1,5 +1,6 @@
 const User = require('../models/User');
-
+var bcrypt = require('bcryptjs');
+var salt = bcrypt.genSaltSync(10);
 // this function connects to the signup page. It returns an array containing two indices:
 // the user and a boolean, which will be true if the user was created and false if the user
 // already exists.
@@ -12,10 +13,10 @@ const createUser = (req, res) => {
     },
     defaults: {
       username: req.body.username,
-      password: req.body.password,
+      password: bcrypt.hashSync(req.body.password, salt),
       email: req.body.email,
-      pic: req.body.pic,
       phone: req.body.phone,
+      age: req.body.age,
       rating: req.body.rating,
       age: req.body.age,
       firstName: req.body.firstName,
@@ -36,15 +37,25 @@ const createUser = (req, res) => {
 // need to add bcrypt to this later
 const findUser = (req, res) => {
   User.findOne({
-    where: {
-      username: req.body.username,
-      password: req.body.password,
-    },
+    where: { username: req.body.username },
   }).then((data) => {
-    if (!data) return res.status(400).send('No user found');
-    const user = { id_token: data._id };
-    res.status(200).send(user);
-  });
+    if (bcrypt.compareSync(req.body.password, data.dataValues.password)) {
+      const user = { id_token: data._id };
+      res.status(200).send(user)
+    }
+    else { return res.status(400).send('No user found') }
+  })
+
+  // User.findOne({
+  //   where: {
+  //     username: req.body.username,
+  //     password: req.body.password,
+  //   },
+  // }).then((data) => {
+  //   if (!data) return res.status(400).send('No user found');
+  //   const user = { id_token: data._id };
+  //   res.status(200).send(user);
+  // });
 };
 
 const compareUser = (req, res) => {
