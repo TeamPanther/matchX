@@ -1,6 +1,4 @@
-
 import React from 'react';
-import SingleSpace from './SingleSpace'
 // if no spaces write a message
 const OwnerSpaces = (props) => {
   console.log('INSIDE OWNER SPACES')
