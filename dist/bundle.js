@@ -4974,13 +4974,51 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Card = __webpack_require__(199);
+
+var _FlatButton = __webpack_require__(127);
+
+var _FlatButton2 = _interopRequireDefault(_FlatButton);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var User = function User(props) {
+  var user = props.user;
+
   return _react2.default.createElement(
     'div',
     { className: 'user' },
-    'User'
+    _react2.default.createElement(
+      _Card.Card,
+      null,
+      _react2.default.createElement(_Card.CardHeader, {
+        title: user.username,
+        subtitle: ''
+      }),
+      _react2.default.createElement(
+        _Card.CardMedia,
+        {
+          overlay: _react2.default.createElement(_Card.CardTitle, { title: user.username, subtitle: user.email })
+        },
+        _react2.default.createElement('img', { src: user.pic.length !== 0 ? user.pic : 'http://www.clker.com/cliparts/d/L/P/X/z/i/no-image-icon-md.png', alt: '' })
+      ),
+      _react2.default.createElement(
+        _Card.CardText,
+        null,
+        'Hi my name is ',
+        user.firstName,
+        ' ',
+        user.lastName,
+        '. My email is ',
+        user.email,
+        '. I am a ',
+        user.gender,
+        ' and I am really interested in ',
+        user.genderPreference,
+        '. Call me beb.'
+      )
+    ),
+    _react2.default.createElement('br', null)
   );
 };
 
@@ -28356,10 +28394,6 @@ var _Login = __webpack_require__(281);
 
 var _Login2 = _interopRequireDefault(_Login);
 
-var _CreateSpace = __webpack_require__(294);
-
-var _CreateSpace2 = _interopRequireDefault(_CreateSpace);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // successful signup and login generates a token that holds the _id from the sequelize database
@@ -28375,8 +28409,7 @@ var App = function App() {
       _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Login2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _Login2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/signup', component: _Signup2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/owner', component: _OwnerContainer2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/createspace', component: _CreateSpace2.default })
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/owner', component: _OwnerContainer2.default })
     )
   );
 };
@@ -28473,7 +28506,7 @@ var OwnerContainer = function (_Component) {
         'div',
         { className: 'ownerContainer' },
         _react2.default.createElement(_UserProfile2.default, { user: this.props.user }),
-        _react2.default.createElement(_UsersList2.default, null)
+        _react2.default.createElement(_UsersList2.default, { usersList: this.props.user.matches })
       );
     }
   }]);
@@ -28560,11 +28593,14 @@ var _User2 = _interopRequireDefault(_User);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var UsersList = function UsersList(props) {
+  var usersList = props.usersList.map(function (user) {
+    return _react2.default.createElement(_User2.default, { user: user });
+  });
   return _react2.default.createElement(
     'div',
     { className: 'usersList' },
-    'UsersList',
-    _react2.default.createElement(_User2.default, null)
+    'GOOD MATCHES!!!',
+    usersList
   );
 };
 
@@ -34262,8 +34298,8 @@ var Signup = function (_React$Component) {
       firstName: '',
       lastName: '',
       age: 0,
-      gender: '',
-      genderPreference: '',
+      gender: '-',
+      genderPreference: '-',
       question1: 0,
       question2: 0,
       question3: 0,
@@ -34409,6 +34445,11 @@ var Signup = function (_React$Component) {
               } },
             _react2.default.createElement(
               'option',
+              { value: '-' },
+              '-'
+            ),
+            _react2.default.createElement(
+              'option',
               { value: 'Male' },
               'Male'
             ),
@@ -34433,6 +34474,11 @@ var Signup = function (_React$Component) {
             { value: this.state.genderPreference, onChange: function onChange(e) {
                 return _this2.handleChange('genderPreference', e);
               } },
+            _react2.default.createElement(
+              'option',
+              { value: '-' },
+              '-'
+            ),
             _react2.default.createElement(
               'option',
               { value: 'Male' },
@@ -34752,6 +34798,13 @@ var Login = function (_Component) {
       if (username && password) {
         dispatch((0, _auth2.default)({ username: username, password: password }));
       }
+    }, _this.handleKeyPress = function (event) {
+      if (event.charCode == 13) {
+        console.log('enter triggered');
+        event.preventDefault();
+        // event.stopPropagation();
+        _this.handleSubmit(event);
+      }
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -34766,7 +34819,7 @@ var Login = function (_Component) {
         _react2.default.createElement(
           'h1',
           null,
-          'Space Ex!'
+          'Match Ex!'
         ),
         _react2.default.createElement(_TextField2.default, {
           hintText: 'Username',
@@ -34781,6 +34834,9 @@ var Login = function (_Component) {
           value: this.state.password,
           onChange: function onChange(e) {
             return _this2.handleChange('password', e);
+          },
+          onKeyPress: function onKeyPress(e) {
+            return _this2.handleKeyPress(e);
           }
         }),
         _react2.default.createElement('br', null),
@@ -36418,192 +36474,7 @@ var loginUser = function loginUser(creds) {
 exports.default = loginUser;
 
 /***/ }),
-/* 294 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(24);
-
-var _reactRedux = __webpack_require__(20);
-
-var _actions = __webpack_require__(25);
-
-var actions = _interopRequireWildcard(_actions);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var mapStateToProps = function mapStateToProps() {
-  return {};
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    addSpace: function addSpace(userId) {
-      return dispatch(actions.addSpace(userId));
-    }
-  };
-};
-// after creating, redirect to success >>> owner dash
-
-var CreateSpace = function (_React$Component) {
-  _inherits(CreateSpace, _React$Component);
-
-  function CreateSpace(props) {
-    _classCallCheck(this, CreateSpace);
-
-    // owner_user_id should come from props
-    // auto set rating?
-    var _this = _possibleConstructorReturn(this, (CreateSpace.__proto__ || Object.getPrototypeOf(CreateSpace)).call(this, props));
-
-    _this.state = {
-      name: '',
-      location: '',
-      description: '',
-      rating: 0,
-      picture: '',
-      tags: '',
-      owner_user_id: localStorage.id_token
-    };
-    _this.handleChange = _this.handleChange.bind(_this);
-    return _this;
-  }
-
-  _createClass(CreateSpace, [{
-    key: 'handleChange',
-    value: function handleChange(name, event) {
-      this.setState(_defineProperty({}, name, event.target.value));
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      // console.log(this.props.location.state)
-      // console.log(this.props.addSpace)
-      return _react2.default.createElement(
-        'div',
-        { id: 'create-space' },
-        _react2.default.createElement(
-          'h3',
-          null,
-          'Create Space'
-        ),
-        _react2.default.createElement(
-          'h4',
-          null,
-          'Space Name:',
-          _react2.default.createElement('input', {
-            type: 'text',
-            value: this.state.name,
-            onChange: function onChange(e) {
-              return _this2.handleChange('name', e);
-            }
-          })
-        ),
-        _react2.default.createElement(
-          'h4',
-          null,
-          'Location:',
-          _react2.default.createElement('input', {
-            type: 'text',
-            value: this.state.location,
-            onChange: function onChange(e) {
-              return _this2.handleChange('location', e);
-            }
-          })
-        ),
-        _react2.default.createElement(
-          'h4',
-          null,
-          'Description:',
-          _react2.default.createElement('input', {
-            type: 'text',
-            value: this.state.description,
-            onChange: function onChange(e) {
-              return _this2.handleChange('description', e);
-            }
-          })
-        ),
-        _react2.default.createElement(
-          'h4',
-          null,
-          'Picture Link:',
-          _react2.default.createElement('input', {
-            type: 'text',
-            value: this.state.picture,
-            onChange: function onChange(e) {
-              return _this2.handleChange('picture', e);
-            }
-          })
-        ),
-        _react2.default.createElement(
-          'h4',
-          null,
-          'Tags:',
-          _react2.default.createElement('input', {
-            type: 'text',
-            value: this.state.tags,
-            onChange: function onChange(e) {
-              return _this2.handleChange('tags', e);
-            }
-          })
-        ),
-        _react2.default.createElement(
-          'h4',
-          null,
-          _react2.default.createElement('br', null),
-          _react2.default.createElement(
-            'button',
-            { onClick: function onClick() {
-                return _this2.props.addSpace(_this2.state);
-              } },
-            'Create!'
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
-            'Changed your mind?'
-          ),
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/owner' },
-            'Back to dashboard'
-          )
-        )
-      );
-    }
-  }]);
-
-  return CreateSpace;
-}(_react2.default.Component);
-
-// export default connect(mapDispatchToProps)(Signup);
-
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CreateSpace);
-
-/***/ }),
+/* 294 */,
 /* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 

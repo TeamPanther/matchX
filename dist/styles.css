@@ -14,9 +14,23 @@ div {
 
 .userProfile {
   width: 250px;
-  height: 250px;
+  height: 400px;
 }
 
 #sign-up {
   text-align:center;
+}
+
+.user {
+  width: 50%;
+  height: 50%;
+  max-width: 400px;
+  max-height: 400px;
+  margin: 10px;
+}
+
+.user img {
+  width: auto;
+  height: auto;
+  max-height: 100px;
 }
