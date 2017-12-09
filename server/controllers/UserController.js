@@ -42,7 +42,18 @@ const findUser = (req, res) => {
     },
   }).then((data) => {
     if (!data) return res.status(400).send('No user found');
-    const user = { id_token: data._id };
+    const user = { id_token: data._id,
+      username: data.username,
+      email: data.email,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      pic: data.pic,
+      phone: data.phone,
+      rating: data.rating,
+      age: data.age,
+      gender: data.gender,
+      genderPreference: data.genderPreference
+    };
     res.status(200).send(user);
   });
 };
@@ -76,4 +87,3 @@ const compareUser = (req, res) => {
 };
 
 module.exports = { createUser, findUser, compareUser };
-
