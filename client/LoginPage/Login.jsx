@@ -32,7 +32,8 @@ class Login extends Component {
 
   render() {
     return (
-      <div id="login">
+      <div id="login" style={{textAlign: 'center'}}>
+        <h1>Space Ex!</h1>
         <TextField
           hintText="Username"
           value={this.state.username}

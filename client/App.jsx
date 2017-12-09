@@ -11,8 +11,7 @@ import CreateSpace from './components/CreateSpace';
 // the reducers have NOT been tested and need to be worked on
 
 const App = () => (
-  <div id="app" style={{textAlign: 'center'}}>
-    <h1>Space Ex!</h1>
+  <div id="app">
     <Switch>
       <Route exact path="/" component={Login} />
       <Route path="/login" component={Login} />

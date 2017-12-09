@@ -19,8 +19,6 @@ const mapDispatchToProps = dispatch => ({
   // addSpace: userId => dispatch(actions.getSpaces(userId)),
 });
 
-
-
 class OwnerContainer extends Component {
 
   componentDidMount() {

@@ -28368,12 +28368,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var App = function App() {
   return _react2.default.createElement(
     'div',
-    { id: 'app', style: { textAlign: 'center' } },
-    _react2.default.createElement(
-      'h1',
-      null,
-      'Space Ex!'
-    ),
+    { id: 'app' },
     _react2.default.createElement(
       _reactRouterDom.Switch,
       null,
@@ -28604,23 +28599,19 @@ var UserProfile = function UserProfile(props) {
   console.log(user);
   return _react2.default.createElement(
     'div',
-    { className: 'userProfile' },
+    { className: 'userProfile', style: { textAlign: 'center' } },
     _react2.default.createElement(
       _Card.Card,
       null,
       _react2.default.createElement(_Card.CardHeader, {
         title: user.firstName + ' ' + user.lastName,
-        subtitle: user.email,
-        avatar: user.pic
+        subtitle: user.email
       }),
       _react2.default.createElement(
         _Card.CardMedia,
-        {
-          overlay: _react2.default.createElement(_Card.CardTitle, { title: '', subtitle: '' })
-        },
+        { overlay: _react2.default.createElement(_Card.CardTitle, { title: '', subtitle: '' }) },
         _react2.default.createElement('img', { src: user.pic, alt: '' })
       ),
-      _react2.default.createElement(_Card.CardTitle, { title: '', subtitle: '' }),
       _react2.default.createElement(
         _Card.CardText,
         null,
@@ -28629,14 +28620,9 @@ var UserProfile = function UserProfile(props) {
         user.genderPreference,
         user.age,
         user.phone
-      ),
-      _react2.default.createElement(
-        _Card.CardActions,
-        null,
-        _react2.default.createElement(_FlatButton2.default, { label: 'Action1' }),
-        _react2.default.createElement(_FlatButton2.default, { label: 'Action2' })
       )
     ),
+    _react2.default.createElement(_FlatButton2.default, { label: 'Action1' }),
     _react2.default.createElement('br', null)
   );
 };
@@ -34776,7 +34762,12 @@ var Login = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { id: 'login' },
+        { id: 'login', style: { textAlign: 'center' } },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Space Ex!'
+        ),
         _react2.default.createElement(_TextField2.default, {
           hintText: 'Username',
           value: this.state.username,

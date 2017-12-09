@@ -41,7 +41,7 @@ const findUser = (req, res) => {
     where: { username: req.body.username },
   }).then((data) => {
     if (bcrypt.compareSync(req.body.password, data.dataValues.password)) {
-      const user = { 
+      const user = {
         id_token: data._id,
         username: data.username,
         email: data.email,
@@ -52,7 +52,12 @@ const findUser = (req, res) => {
         rating: data.rating,
         age: data.age,
         gender: data.gender,
-        genderPreference: data.genderPreference
+        genderPreference: data.genderPreference,
+        question1: data.question1,
+        question2: data.question2,
+        question3: data.question3,
+        question4: data.question4,
+        question5: data.question5,
       };
       return user;
     } else {
@@ -61,16 +66,18 @@ const findUser = (req, res) => {
   }).then((oneData) => {
     if (!oneData.username) return res.status(400).send('No user found');
 
-    User.find({}).then((matchData) => {
+    User.findAll({}).then((matchData) => {
       const bestMatches = [];
       const choices = matchData.filter(user => user.username !== oneData.username);
       const diffs = choices.map((user, ind) => {
+
+        console.log('ONEDATAQUESTIONNNN: ', oneData)
         return {
-          diff: Math.abs(oneData.question1 - user.question1) +
-                Math.abs(oneData.question2 - user.question2) +
-                Math.abs(oneData.question3 - user.question3) +
-                Math.abs(oneData.question4 - user.question4) +
-                Math.abs(oneData.question5 - user.question5),
+          diff: Math.abs(oneData.question1 - user.dataValues.question1) +
+                Math.abs(oneData.question2 - user.dataValues.question2) +
+                Math.abs(oneData.question3 - user.dataValues.question3) +
+                Math.abs(oneData.question4 - user.dataValues.question4) +
+                Math.abs(oneData.question5 - user.dataValues.question5),
           index: ind,
         };
       // sort diffs lowest to highest
@@ -78,7 +85,9 @@ const findUser = (req, res) => {
 
       // Include best matches
       diffs.forEach((elem) => {
+        console.log('elem is: ', elem)
         bestMatches.push(choices[elem.ind]);
+        console.log('bestmatches is: ', bestMatches)
       });
 
       const userObj = oneData;
