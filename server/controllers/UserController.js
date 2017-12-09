@@ -1,6 +1,7 @@
 const User = require('../models/User');
-var bcrypt = require('bcryptjs');
-var salt = bcrypt.genSaltSync(10);
+const bcrypt = require('bcryptjs');
+
+const salt = bcrypt.genSaltSync(10);
 // this function connects to the signup page. It returns an array containing two indices:
 // the user and a boolean, which will be true if the user was created and false if the user
 // already exists.
@@ -58,6 +59,8 @@ const findUser = (req, res) => {
       return res.status(400).send('No user found');
     }
   }).then((oneData) => {
+    if (!oneData.username) return res.status(400).send('No user found');
+
     User.find({}).then((matchData) => {
       const bestMatches = [];
       const choices = matchData.filter(user => user.username !== oneData.username);
