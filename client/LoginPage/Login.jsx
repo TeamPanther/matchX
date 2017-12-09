@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
 
 import { logoutUser } from '../actions/actions';
 import loginUser from '../actions/auth';
@@ -16,7 +18,6 @@ class Login extends Component {
     }
 
   handleChange = (name, event) => {
-    console.log('event.target.value is: ', event.target.value)
     this.setState({ [name]: event.target.value });
   }
 
@@ -32,34 +33,34 @@ class Login extends Component {
   render() {
     return (
       <div id="login">
-        <h4>Login</h4>
-        <h4>
-          Username:
-          <input
-            type="text"
-            value={this.state.username}
-            onChange={e => this.handleChange('username', e)}
-          />
-        </h4>
-        <h4>
-          Password:
-          <input
-            type="text"
-            value={this.state.password}
-            onChange={e => this.handleChange('password', e)}
-          />
-          <br/>
-          <br/>
+        <TextField
+          hintText="Username"
+          value={this.state.username}
+          onChange={e => this.handleChange('username', e)}
+        /><br />
+        <TextField
+          hintText="Password"
+          value={this.state.password}
+          onChange={e => this.handleChange('password', e)}
+        /><br />
+        <FlatButton
+          id="search-button"
+          onClick={this.handleSubmit}
+          label="Log In"
+          primary={true}
+        /><br />
 
-          {/* login post request reducer to database goes here */}
-          <button onClick={this.handleSubmit}>
-            Login
-          </button>
-          Not a user?
-          <Link to='/signup'>Signup</Link>
-          <br/>
+        Not a user?
+        {/* <Link to='/signup'>
+          <FlatButton
+            id="search-button"
+            onClick={this.handleSubmit}
+            label="Sign Up"
+            secondary={true} />
+        </Link> */}
+        {/* refactor to incorporate materialui */}
+        <Link to='/signup'>Signup</Link>
           {this.props.auth.isAuthenticated === true && <Redirect to="/owner" />}
-        </h4>
       </div>
     )
   }

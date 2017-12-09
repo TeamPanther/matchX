@@ -3,8 +3,9 @@
 }
 
 #app{
-  background: tomato;
+  /*background: tomato;*/
 }
+
 div {
   display: flex;
   /*justify-content: center;*/

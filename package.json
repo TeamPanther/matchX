@@ -1,7 +1,7 @@
 {
-  "name": "space-ex",
+  "name": "matchX",
   "version": "1.0.0",
-  "description": "airbnb for every other kind of space",
+  "description": "airbnb for every other kind of match",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,13 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Team-Deluge/Space-Ex.git"
+    "url": "git+https://github.com/TeamPanther/matchX.git"
   },
   "keywords": [
     "space",
     "ex"
   ],
-  "author": "Team Deluge",
+  "author": "Team Panther",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Team-Deluge/Space-Ex/issues"
@@ -34,6 +34,7 @@
     "css-loader": "^0.28.7",
     "express": "^4.16.2",
     "html-webpack-plugin": "^2.30.1",
+    "material-ui": "^0.20.0",
     "node": "^9.2.0",
     "path": "^0.12.7",
     "pg": "^6.4.2",
