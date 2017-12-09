@@ -2,9 +2,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import OwnerSpaces from '../components/OwnerSpaces'
 import Logout from '../components/Logout';
 import * as actions from '../actions/actions';
+import User from '../components/User';
+import UsersList from '../components/UsersList';
+import UserProfile from '../components/UserProfile';
 
 const mapStateToProps = store => ({
   spaces: store.spaceReducer.spaces,
@@ -12,22 +14,24 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getSpaces: userId => dispatch(actions.getSpaces(userId)),
-  deleteSpace: (spaceId, userId) => dispatch(actions.getSpaces(spaceId, userId)),
-  addSpace: userId => dispatch(actions.getSpaces(userId)),
+  // getSpaces: userId => dispatch(actions.getSpaces(userId)),
+  // deleteSpace: (spaceId, userId) => dispatch(actions.getSpaces(spaceId, userId)),
+  // addSpace: userId => dispatch(actions.getSpaces(userId)),
 });
 
 class OwnerContainer extends Component {
   render() {
-    console.log('this is id token')
-    console.log(localStorage.id_token)
+    console.log('this is id token', localStorage.id_token)
+    console.log('this.props is: ', this.props)
     return (
-      <div className='owner-container'>
-        {props.username} Container
+      <div className='ownerContainer'>
+        Container
+        <UserProfile />
+        <UsersList />
 
-        <Link to={{pathname:'/createspace', state:{id:props._id}}}>Create a Space!</Link>
-        {props.isAuthenticated === true && <Logout />}
-        {props.isAuthenticated === false && <Redirect to="/" />}
+        {/* <Link to={{pathname:'/createspace', state:{id:this.props._id}}}>Create a Space!</Link> */}
+        {/* {this.props.isAuthenticated === true && <Logout />}
+        {this.props.isAuthenticated === false && <Redirect to="/" />} */}
       </div>
     );
   }
