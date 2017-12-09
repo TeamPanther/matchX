@@ -21,6 +21,7 @@ class Signup extends React.Component {
       username: '',
       password: '',
       dateJoined: '',
+      pic: '',
       email: '',
       firstName: '',
       lastName: '',
@@ -49,6 +50,7 @@ class Signup extends React.Component {
         username: this.state.username,
         password: this.state.password,
         email: this.state.email,
+        pic: this.state.pic,
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         age: this.state.age,
@@ -103,6 +105,14 @@ class Signup extends React.Component {
             type="text"
             value={this.state.email}
             onChange={e => this.handleChange('email', e)}
+          />
+        </h4>
+        <h4>
+          Profile Picture:
+          <input
+            type="text"
+            value={this.state.pic}
+            onChange={e => this.handleChange('pic', e)}
           />
         </h4>
         <h4>

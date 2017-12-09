@@ -21,17 +21,12 @@ const User = sequelize.define('user', {
     // allowNull: false,
     unique: true,
   },
+  pic: {
+    type: Sequelize.STRING,
+  },
   phone: {
     type: Sequelize.STRING,
   },
-<<<<<<< HEAD
-  user: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    defaultValue: [],
-  },
-=======
->>>>>>> 9fa983d616f856ea9628d0417085121797fa98bd
   rating: {
     // type: Sequelize.DECIMAL(2, 1),
     type: Sequelize.ARRAY(Sequelize.TEXT),
