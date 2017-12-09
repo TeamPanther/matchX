@@ -33,92 +33,12 @@ class Signup extends React.Component {
       question5: 0,
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(name, event) {
     console.log("state: ", this.state);
     this.setState({ [name]: event.target.value });
   }
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const { 
-      username, 
-      password,
-      dateJoined, 
-      email,
-      name,
-      age,
-      gender,
-      genderPreference,
-      question1,
-      question2,
-      question3,
-      question4,
-      question5 
-    } = this.state;
-    const { dispatch } = this.props;
-    if (username && password) {
-      dispatch(loginUser({ 
-        username: username, 
-        password: password,
-        dateJoined: dateJoined,
-        email: email,
-        name: name,
-        age: age,
-        gender: gender,
-        genderPreference: genderPreference,
-        question1: question1,
-        question2: question2,
-        question3: question3,
-        question4: question4,
-        question5: question5 
-      }))
-    } else {
-      alert("you must fill out all fields!");
-    }
-  }
-
-
-
-
-
-  
-  // handleSubmit(e){
-  //   e.preventDefault();
-  //   //set user ID and user data
-  //   let userIDIncrement = this.state.userID +1
-  //   const tempUserData = {
-  //     question1 this.state.tacos.Preference,
-  //     question2: this.state.question2,
-  //     question3: this.state.question3,
-  //     question4: this.state.question4,
-  //     question5: this.state.question5
-  //   }
-    
-  //   this.state.userData.push(tempUserData);
-  
-  //POST user data (state @ index of userID) to the database using fetch 
-  //   fetch('', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type: ''
-  //     },
-  //     body: JSON.stringify(this.state.userData[userID])
-  //   }).then((res)=>{
-  //     console.log(res);
-  //   }).catch((err)=>{
-  //     console.log(err)
-  //   })
-    
-  //   //update the state
-  //   this.setState({
-  //     userData: this.state.userData,
-  //     submitted: true,
-  //     userID: userIDIncrement,
-  //   })
-  // }
 
   render() {
     const config = {
