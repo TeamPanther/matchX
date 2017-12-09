@@ -15,8 +15,12 @@ const createUser = (req, res) => {
       password: req.body.password,
       email: req.body.email,
       phone: req.body.phone,
+<<<<<<< HEAD
       age: req.body.age,
+=======
+>>>>>>> 9fa983d616f856ea9628d0417085121797fa98bd
       rating: req.body.rating,
+      age: req.body.age,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       gender: req.body.gender,
