@@ -71,7 +71,7 @@ const findUser = (req, res) => {
       const choices = matchData.filter(user => user.username !== oneData.username);
       const diffs = choices.map((user, ind) => {
 
-        console.log('ONEDATAQUESTIONNNN: ', oneData)
+        // console.log('ONEDATAQUESTIONNNN: ', oneData)
         return {
           diff: Math.abs(oneData.question1 - user.dataValues.question1) +
                 Math.abs(oneData.question2 - user.dataValues.question2) +
@@ -85,9 +85,27 @@ const findUser = (req, res) => {
 
       // Include best matches
       diffs.forEach((elem) => {
-        console.log('elem is: ', elem)
-        bestMatches.push(choices[elem.ind]);
-        console.log('bestmatches is: ', bestMatches)
+        // console.log('elem is: ', elem);
+        let data = choices[elem.index];
+        let tempObj = {
+          username: data.dataValues.username,
+          email: data.dataValues.email,
+          firstName: data.dataValues.firstName,
+          lastName: data.dataValues.lastName,
+          pic: data.dataValues.pic,
+          phone: data.dataValues.phone,
+          rating: data.dataValues.rating,
+          age: data.dataValues.age,
+          gender: data.dataValues.gender,
+          genderPreference: data.dataValues.genderPreference,
+          question1: data.dataValues.question1,
+          question2: data.dataValues.question2,
+          question3: data.dataValues.question3,
+          question4: data.dataValues.question4,
+          question5: data.dataValues.question5,
+        };
+        bestMatches.push(tempObj);
+        // console.log('bestmatches is: ', bestMatches);
       });
 
       const userObj = oneData;
