@@ -9,8 +9,8 @@ import UsersList from '../components/UsersList';
 import UserProfile from '../components/UserProfile';
 
 const mapStateToProps = store => ({
-  spaces: store.spaceReducer.spaces,
   isAuthenticated: store.auth.isAuthenticated,
+  user: store.auth.user
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -19,19 +19,26 @@ const mapDispatchToProps = dispatch => ({
   // addSpace: userId => dispatch(actions.getSpaces(userId)),
 });
 
+
+
 class OwnerContainer extends Component {
+
+  componentDidMount() {
+    console.log('did mount2')
+    //fetch list of users
+  }
+
   render() {
     console.log('this is id token', localStorage.id_token)
-    console.log('this.props is: ', this.props)
+    // console.log('this.props is: ', this.props)
     return (
       <div className='ownerContainer'>
-        Container
-        <UserProfile />
+        <UserProfile user={this.props.user}/>
         <UsersList />
 
         {/* <Link to={{pathname:'/createspace', state:{id:this.props._id}}}>Create a Space!</Link> */}
-        {/* {this.props.isAuthenticated === true && <Logout />}
-        {this.props.isAuthenticated === false && <Redirect to="/" />} */}
+        {/* {this.props.isAuthenticated === true && <Logout />} */}
+        {/* {this.props.isAuthenticated === false && <Redirect to="/" />} */}
       </div>
     );
   }
