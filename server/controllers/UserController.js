@@ -16,7 +16,7 @@ const createUser = (req, res) => {
       password: bcrypt.hashSync(req.body.password, salt),
       email: req.body.email,
       phone: req.body.phone,
-      age: req.body.age,
+      pic: req.body.pic,
       rating: req.body.rating,
       age: req.body.age,
       firstName: req.body.firstName,
