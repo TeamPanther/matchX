@@ -22,16 +22,17 @@ const mapDispatchToProps = dispatch => ({
 class OwnerContainer extends Component {
 
   componentDidMount() {
-    console.log('did mount2')
-    //fetch list of users
+    // console.log('did mount2')
   }
 
   render() {
-    console.log('this is id token', localStorage.id_token)
+    // console.log('this is id token', localStorage.id_token)
     // console.log('this.props is: ', this.props)
     return (
       <div className='ownerContainer'>
+        <h1 style={{textAlign:'center'}}> MATCH EX </h1>
         <UserProfile user={this.props.user}/>
+        <h3>GOOD FRIEND MATCHES</h3>
         <UsersList usersList={this.props.user.matches}/>
 
         {/* <Link to={{pathname:'/createspace', state:{id:this.props._id}}}>Create a Space!</Link> */}

@@ -7,7 +7,6 @@ const UsersList = (props) => {
   })
   return (
     <div className='usersList'>
-      GOOD MATCHES!!!
       {usersList}
     </div>
   );

@@ -109,7 +109,7 @@ const findUser = (req, res) => {
       });
 
       const userObj = oneData;
-      userObj.matches = bestMatches;
+      userObj.matches = bestMatches.slice(0,4);
       res.status(200).send(userObj);
     });
   });
