@@ -26161,7 +26161,12 @@ var Signup = function (_React$Component) {
           password = _this$state.password,
           dateJoined = _this$state.dateJoined,
           email = _this$state.email,
+<<<<<<< HEAD
           name = _this$state.name,
+=======
+          firstName = _this$state.firstName,
+          lastName = _this$state.lastName,
+>>>>>>> 9fa983d616f856ea9628d0417085121797fa98bd
           age = _this$state.age,
           gender = _this$state.gender,
           genderPreference = _this$state.genderPreference,
@@ -26178,7 +26183,12 @@ var Signup = function (_React$Component) {
           password: password,
           dateJoined: dateJoined,
           email: email,
+<<<<<<< HEAD
           name: name,
+=======
+          firstName: firstName,
+          lastName: lastName,
+>>>>>>> 9fa983d616f856ea9628d0417085121797fa98bd
           age: age,
           gender: gender,
           genderPreference: genderPreference,
@@ -26198,7 +26208,12 @@ var Signup = function (_React$Component) {
       password: '',
       dateJoined: '',
       email: '',
+<<<<<<< HEAD
       name: '',
+=======
+      firstName: '',
+      lastName: '',
+>>>>>>> 9fa983d616f856ea9628d0417085121797fa98bd
       age: 0,
       gender: '',
       genderPreference: '',
@@ -26216,7 +26231,11 @@ var Signup = function (_React$Component) {
   _createClass(Signup, [{
     key: 'handleChange',
     value: function handleChange(name, event) {
+<<<<<<< HEAD
       console.log("state: ", this.state);
+=======
+      // console.log("state: ", this.state);
+>>>>>>> 9fa983d616f856ea9628d0417085121797fa98bd
       this.setState(_defineProperty({}, name, event.target.value));
     }
   }, {
@@ -26614,7 +26633,8 @@ var Signup = function (_React$Component) {
           _react2.default.createElement(
             'button',
             { onClick: function onClick() {
-                return _this2.props.signup(config);
+                // console.log("config: ", config);
+                _this2.props.signup(config);
               } },
             'Signup'
           ),

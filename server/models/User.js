@@ -9,26 +9,29 @@ const User = sequelize.define('user', {
   },
   username: {
     type: Sequelize.STRING,
-    allowNull: false,
+    // allowNull: false,
     unique: true,
   },
   password: { 
     type: Sequelize.STRING,
-    allowNull: false,
+    // allowNull: false,
   },
   email: {
     type: Sequelize.STRING,
-    allowNull: false,
+    // allowNull: false,
     unique: true,
   },
   phone: {
     type: Sequelize.STRING,
   },
+<<<<<<< HEAD
   user: {
     type: Sequelize.STRING,
     allowNull: false,
     defaultValue: [],
   },
+=======
+>>>>>>> 9fa983d616f856ea9628d0417085121797fa98bd
   rating: {
     // type: Sequelize.DECIMAL(2, 1),
     type: Sequelize.ARRAY(Sequelize.TEXT),
@@ -36,43 +39,43 @@ const User = sequelize.define('user', {
   },
   firstName: {
     type: Sequelize.STRING,
-    allowNull: false,
+    // allowNull: false,
   },
   lastName: {
     type: Sequelize.STRING,
-    allowNull: false,
+    // allowNull: false,
   },
   age: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    // allowNull: false,
   },
   gender: {
     type: Sequelize.STRING,
-    allowNull: false,
+    // allowNull: false,
   },
   genderPreference: {
     type: Sequelize.STRING,
-    allowNull: false,
+    // allowNull: false,
   },
   question1: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    // allowNull: false,
   },
   question2: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    // allowNull: false,
   },
   question3: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    // allowNull: false,
   },
   question4: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    // allowNull: false,
   },
   question5: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    // allowNull: false,
   },
 });
 module.exports = User;
