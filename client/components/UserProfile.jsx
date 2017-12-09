@@ -24,7 +24,7 @@ const UserProfile = (props) => {
           {user.phone}
         </CardText>
       </Card>
-      <FlatButton label="Action1" />
+      <FlatButton label="Logout" />
       <br/>
     </div>
   );

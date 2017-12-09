@@ -6,7 +6,7 @@ const User = (props) => {
   const { user } = props;
   return (
     <div className='user'>
-      <Card>
+      <Card className='card'>
         <CardHeader
           title={user.username}
           subtitle=''

@@ -7,9 +7,9 @@
 }*/
 
 div {
-  display: flex;
+  /*display: flex;*/
   /*justify-content: center;*/
-  flex-direction: column;
+  /*flex-direction: column;*/
 }
 
 .userProfile {
@@ -18,10 +18,11 @@ div {
 }
 
 #sign-up {
-  text-align:center;
+  text-align: center;
 }
 
-.user {
+
+/*.user {
   width: 50%;
   height: 50%;
   max-width: 400px;
@@ -33,4 +34,34 @@ div {
   width: auto;
   height: auto;
   max-height: 100px;
+}*/
+
+.ownerContainer {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+}
+
+
+.usersList {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: center;
+   justify-content: center;
+   -webkit-flex-flow: row wrap;
+   flex-flow: row wrap;
+   /* tweak the where items line up on the row */
+   /* valid values are: flex-start, flex-end, space-between, space-around, stretch */
+   -webkit-align-content: flex-end;
+   align-content: flex-end;
+}
+
+.card {
+  width: 300px;
+  padding: 5px;
+  margin: 5px;
 }
