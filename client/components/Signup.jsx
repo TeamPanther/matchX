@@ -11,8 +11,6 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-
-
 const mapStateToProps = () => ({});
 
 class Signup extends React.Component {
@@ -23,7 +21,8 @@ class Signup extends React.Component {
       password: '',
       dateJoined: '',
       email: '',
-      name: '',
+      firstName: '',
+      lastName: '',
       age: 0,
       gender: '',
       genderPreference: '',
@@ -38,7 +37,7 @@ class Signup extends React.Component {
   }
 
   handleChange(name, event) {
-    console.log("state: ", this.state);
+    // console.log("state: ", this.state);
     this.setState({ [name]: event.target.value });
   }
 
@@ -49,7 +48,8 @@ class Signup extends React.Component {
       password,
       dateJoined, 
       email,
-      name,
+      firstName,
+      lastName,
       age,
       gender,
       genderPreference,
@@ -66,7 +66,8 @@ class Signup extends React.Component {
         password: password,
         dateJoined: dateJoined,
         email: email,
-        name: name,
+        firstName: firstName,
+        lastName: lastName,
         age: age,
         gender: gender,
         genderPreference: genderPreference,
@@ -80,11 +81,6 @@ class Signup extends React.Component {
       alert("you must fill out all fields!");
     }
   }
-
-
-
-
-
   
   // handleSubmit(e){
   //   e.preventDefault();
@@ -263,7 +259,10 @@ class Signup extends React.Component {
         <h4>
           <br />
           {/* post request (reducers) to signup goes in this button */}
-          <button onClick={() => this.props.signup(config)}>
+          <button onClick={() => {
+            // console.log("config: ", config);
+            this.props.signup(config)
+          }}>
             Signup
           </button>
           Already a user?
